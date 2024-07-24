@@ -1,3 +1,7 @@
+export function clearGallery() {
+  document.querySelector('.gallery').innerHTML = '';
+}
+
 export function renderImageCards(images) {
   return images
     .map(
@@ -24,10 +28,6 @@ export function renderImageCards(images) {
   `
     )
     .join('');
-}
-
-export function clearGallery() {
-  document.querySelector('.gallery').innerHTML = '';
 }
 
 export function appendImagesToGallery(markup) {

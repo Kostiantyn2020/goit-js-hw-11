@@ -1,9 +1,26 @@
-import { fetchImages } from './js/pixabay-api';
-import { renderImageCards } from './js/render-functions';
+(function () {
+  const originalAddEventListener = EventTarget.prototype.addEventListener;
 
+  EventTarget.prototype.addEventListener = function (type, listener, options) {
+    if (type === 'touchstart' || type === 'touchmove') {
+      if (typeof options === 'object') {
+        options.passive = true;
+      } else {
+        options = { passive: true };
+      }
+    }
+    originalAddEventListener.call(this, type, listener, options);
+  };
+})();
+
+import { fetchImages } from './js/pixabay-api.js';
+import {
+  renderImageCards,
+  clearGallery,
+  appendImagesToGallery,
+} from './js/render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -22,7 +39,7 @@ form.addEventListener('submit', async event => {
     return;
   }
 
-  clearGallery();
+  clearGallery(); // вызов функции для очистки галереи
   loader.style.display = 'block';
 
   try {
