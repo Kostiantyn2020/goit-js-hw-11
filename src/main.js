@@ -39,7 +39,7 @@ form.addEventListener('submit', async event => {
     return;
   }
 
-  clearGallery(); // вызов функции для очистки галереи
+  clearGallery();
   loader.style.display = 'block';
 
   try {
@@ -54,6 +54,7 @@ form.addEventListener('submit', async event => {
       const markup = renderImageCards(data.hits);
       appendImagesToGallery(markup);
       lightbox.refresh();
+      event.target.elements.searchQuery.value = '';
     }
   } catch (error) {
     iziToast.error({
