@@ -54,7 +54,8 @@ form.addEventListener('submit', async event => {
       const markup = renderImageCards(data.hits);
       appendImagesToGallery(markup);
       lightbox.refresh();
-      event.target.elements.searchQuery.value = '';
+      /*event.target.elements.searchQuery.value = '';*/
+      form.elements.searchQuery.value = '';
     }
   } catch (error) {
     iziToast.error({
